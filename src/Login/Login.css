@@ -1,0 +1,49 @@
+.main-wrapper {
+  width: 20em;
+  padding: 1.5em;
+  margin: auto;
+  background-color: #ffffff;
+  border-top: 3px solid green;
+}
+
+h1 {
+  text-align: center;
+}
+
+label {
+  margin: 1em 0;
+}
+label.second-element {
+  text-align: center;
+}
+
+.email-label input,
+.password-label input {
+  width: 91%;
+  /* border: 1px solid #ececec; */
+  padding: 1em;
+}
+
+label {
+  display: block;
+}
+.checkbox-style p {
+  display: inline-block;
+}
+button {
+  width: 100%;
+  padding: 1em;
+  color: #ffffff;
+  font-weight: 700;
+  background-color: rgb(12, 82, 12);
+  border: none;
+}
+
+.second-element {
+  text-align: center;
+  padding: 1.5em;
+}
+
+.second-element h4 span {
+  font-weight: 400;
+}

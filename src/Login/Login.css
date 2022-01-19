@@ -20,7 +20,7 @@ label.second-element {
 .email-label input,
 .password-label input {
   width: 91%;
-  /* border: 1px solid #ececec; */
+  border: 1px solid #ececec;
   padding: 1em;
 }
 

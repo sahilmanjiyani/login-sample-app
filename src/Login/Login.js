@@ -16,7 +16,8 @@ async function loginFunc (credentials) {
 export default function Login({ setToken }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
-    const [borderStyle, setBorderStyle] = useState('1px solid #ececec');
+    const [borderUsernameStyle, setBorderUserStyle] = useState('1px solid #ececec');
+    const [borderPasswordStyle, setBorderPassStyle] = useState('1px solid #ececec');
 
     const emailValidation = () => {
         const regex =
@@ -24,11 +25,14 @@ export default function Login({ setToken }) {
         return !(!username || regex.test(username) === false);
     }
 
-    const inputStyleVal = (bol) => {
-        if (bol) {
-            setBorderStyle('1px solid green')
+    const inputStyleVal = (val, inputType) => {
+        if (inputType == 'username') {
+            val ? setBorderUserStyle('1px solid green') : setBorderUserStyle('1px solid red')
+        } else if (inputType == 'password') {
+            val ? setBorderPassStyle('1px solid green') : setBorderPassStyle('1px solid red')
         } else {
-            setBorderStyle('1px solid red')
+            setBorderUserStyle('1px solid green');
+            setBorderPassStyle('1px solid green');
         }
     }
 
@@ -36,15 +40,17 @@ export default function Login({ setToken }) {
         e.preventDefault();
         
         const isEmailValid = emailValidation(username)
-        if (isEmailValid) {
+        
+        isEmailValid ? inputStyleVal(true, 'username') : inputStyleVal(false, 'username')
+        password!==undefined ? inputStyleVal(true, 'password') : inputStyleVal(false, 'password')
+        
+        if (isEmailValid && password) {
             const token = await loginFunc({
                 username,
                 password
               });
               setToken(token);
-              inputStyleVal(true)
         } else {
-            inputStyleVal(false)
         }
         
     }
@@ -55,12 +61,12 @@ export default function Login({ setToken }) {
             <form onSubmit={onSubmitFunc}>
                 <label className='email-label'>
                     <h3>Email</h3>
-                    <input type="text" style={{border:borderStyle}} onChange={e => setUserName(e.target.value)} />
+                    <input type="text" style={{border:borderUsernameStyle}} onChange={e => setUserName(e.target.value)} />
                 </label>
                 
                 <label className='password-label'>
                     <h3>Password</h3>
-                    <input type="password" onChange={e => setPassword(e.target.value)} />
+                    <input type="password" style={{border:borderPasswordStyle}} onChange={e => setPassword(e.target.value)} />
                 </label>
                 <label className="checkbox-style">
                     <input type="checkbox" />
